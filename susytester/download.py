@@ -4,7 +4,7 @@ import warnings
 from argparse import ArgumentParser
 
 def get_susy_url(class_name, activity_number, test_number):
-    return 'https://susy.ic.unicamp.br:9999/{}/{:02d}/dados/arq{:02d}.in' \
+    return 'https://susy.ic.unicamp.br:9999/{}/{:02d}/dados/arq{:02d}' \
             .format(class_name, activity_number, test_number)
 
 def download_to_file(url, file):
@@ -30,9 +30,9 @@ def download_tests(dest_folder, class_name, activity_number):
     while True:
         url = get_susy_url(class_name, activity_number, test_number)
         test_file_name = os.path.join(dest_folder, 'arq{:02d}'.format(test_number))
-        if not download_to_file(url, test_file_name+'.in'):
+        if not download_to_file(url+'.in', test_file_name+'.in'):
             break
-        download_to_file(url, test_file_name+'.out')
+        download_to_file(url+'.out', test_file_name+'.out')
 
         test_number += 1
 
