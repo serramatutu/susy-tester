@@ -28,9 +28,11 @@ class Logger:
 logger = Logger()
 
 def get_invoke(program_path):
-    ext = os.path.splitext(program_path)[1]
+    program_name, ext = os.path.splitext(program_path)
     if ext == '.py':
-        return 'python3 ' + program_path\
+        return 'python3 ' + program_path
+    elif ext == '.c':
+        return 'gcc -std=c99 -o %s.exe; %s.exe' % (program_name, program_name)
 
 def get_tests_dict(program_path):
     folder = os.path.dirname(program_path)
@@ -61,6 +63,7 @@ def test_single(program_path, test_name, input, expected_output, encoding='utf-8
         if program_output != expected_output:
             logger.error("The program has produced a different output than the expected")
             logger.log(''.join(difflib.ndiff(program_output, expected_output)))
+            # logger.log(program_output)
             return False
     except subprocess.TimeoutExpired as e:
         logger.error('The program has timed out')
