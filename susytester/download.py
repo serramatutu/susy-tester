@@ -1,5 +1,6 @@
 import os
 import requests
+import warnings
 from argparse import ArgumentParser
 
 def get_susy_url(class_name, activity_number, test_number):
@@ -15,7 +16,9 @@ def download_to_file(url, file):
     return False
 
 def get_remote_file_contents(url):
-    r = requests.get(url, verify=False)
+    with warnings.catch_warnings(): # susy n tem SSL direito :(
+        warnings.simplefilter("ignore")
+        r = requests.get(url, verify=False)
     if r.text.find("Sistema SuSy") >= 0: # susy n tem 404 :(
         return None
     return r.text
