@@ -32,11 +32,20 @@ def main():
         help='Opções de download de testes. [turma lab]'
     )
 
+    parser.add_argument(
+        '--language',
+        '-l',
+        dest='language',
+        type=str,
+        help='A linguagem de programação do lab',
+        default='py'
+    )
+
     args = parser.parse_args()
 
     directory = os.path.dirname(os.path.realpath(args.program_name))
 
-    program_path = os.path.join(directory, args.program_name)
+    program_path = os.path.join(directory, args.program_name, args.program_name) + '.' + args.language
     # try:
     test(program_path, download_options=args.download_options)
     # except Exception as e:

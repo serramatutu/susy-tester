@@ -51,7 +51,6 @@ def test_single(program_path, test_name, input, expected_output):
         if program_output != expected_output:
             logger.error("O programa produziu uma saída diferente da esperada")
             logger.log(''.join(difflib.ndiff(program_output, expected_output)))
-            # logger.log(program_output)
             return False
     except subprocess.TimeoutExpired as e:
         logger.error('O programa deu timeout')
