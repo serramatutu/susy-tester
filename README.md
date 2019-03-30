@@ -3,10 +3,7 @@ Corretor automático de exercícios do SuSy (sem gastar suas submissões!)
 
 ## instalação
 ```
-git clone https://github.com/serramatutu/susy-tester
-cd susy-tester 
-python3 setup.py install
-python3 -m pip install -e .
+python3 -m pip install susy-tester
 ```
 
 ## uso

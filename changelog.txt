@@ -1,0 +1,17 @@
+# susy-tester changelog
+
+## 0.0.1
+
+### added
+- initial project version
+
+## 0.0.1.post0
+
+### added
+- changelog.txt for PyPI
+- project description for PyPI
+
+## 0.0.1.post1
+
+### changed
+- README.md for GitHub and PyPI
