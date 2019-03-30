@@ -47,10 +47,11 @@ def test_single(program_path, test_name, input, expected_output):
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
-        program_output = completed_process.stdout.decode('utf-8')
+        program_output = completed_process.stdout.decode('utf-8').split('\n')
+        expected_output = expected_output.split('\n')
         if program_output != expected_output:
             logger.error("O programa produziu uma saída diferente da esperada")
-            logger.log(''.join(difflib.ndiff(program_output, expected_output)))
+            logger.log('\n'.join(difflib.ndiff(program_output, expected_output)))
             return False
     except subprocess.TimeoutExpired as e:
         logger.error('O programa deu timeout')
